@@ -65,7 +65,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -156,11 +156,17 @@ SIMPLE_JWT = {
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'USERNAME_FIELD': 'email',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'ACTIVATION_URL': 'api/auth/activate/{uid}/{token}', 
     'SEND_CONFIRMATION_EMAIL': True,
     'SEND_ACTIVATION_EMAIL': True,
     'HIDE_USERS': True,
+    'EMAIL': {
+        'USER_CREATED_MESSAGE'   :   'Thank you for registering. Please confirm your email address to complete the registration process.',
+        'USER_ACTIVATED_MESSAGE' :   'Your account has been activated.',
+        'USER_CONFIRMED_MESSAGE' :   'Your account has been confirmed.',
+    }
 }
+
 #! --------USER----------
 AUTH_USER_MODEL = 'core.User'
 
@@ -178,3 +184,8 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT')
+
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
