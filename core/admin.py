@@ -1,3 +1,5 @@
 from django.contrib import admin
-
-# Register your models here.
+from django.contrib.auth import get_user_model
+@admin.register(get_user_model())
+class UserAdmin(admin.ModelAdmin):
+    search_fields = ('username', 'email', 'first_name', 'last_name')
