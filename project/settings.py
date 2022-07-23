@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     #*---------------------------
     'core', 
     'plan',
+    'SmsService',
 
 ]
 
@@ -150,6 +151,13 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     'ACCESS_TOKEN_LIFETIME'  :  timedelta(days=(int(config('ACCESS_TOKEN_LIFETIME_BY_DAYS')))),
     'REFRESH_TOKEN_LIFETIME' :  timedelta(days=(int(config('REFRESH_TOKEN_LIFETIME_BY_DAYS')))),
+}
+#! ______DJOSER______
+DJOSER = {
+    'LOGIN_FIELD': 'email',
+    'USERNAME_FIELD': 'email',
+    # 'SEND_ACTIVATION_EMAIL': True,
+    # 'ACTIVATION_URL': 'activate/{uid}/{token}',
 }
 #! --------USER----------
 AUTH_USER_MODEL = 'core.User'
