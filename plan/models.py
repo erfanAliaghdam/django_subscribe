@@ -14,15 +14,15 @@ class Plan(models.Model):
     TREEMONTH         = 'treemonth'
     SIXMONTH          = 'sixmonth'
     PLAN_TYPE = [
-        ('onJoin free', ONJOIN),
-        ('onPayment free',  ONPAYMANT),
-        ('onCard free', ONCARD),
-        ('onReferralPayment free', ONREFERRALPAYMENT),
-        ('onReferralCard free', ONREFERRALCARD),
-        ('onReferralJoin free', ONREFERRALJOIN),
-        ('1month', ONEMONTH),
-        ('3month', TREEMONTH),
-        ('6month', SIXMONTH),
+        ('on Join free', ONJOIN),
+        ('on Payment free',  ONPAYMANT),
+        ('on Card free', ONCARD),
+        ('on Referral Payment free', ONREFERRALPAYMENT),
+        ('on Referral Card free', ONREFERRALCARD),
+        ('on Referral Join free', ONREFERRALJOIN),
+        ('1 month', ONEMONTH),
+        ('3 month', TREEMONTH),
+        ('6 month', SIXMONTH),
     ]
     description = models.TextField(max_length=500)
     price = models.IntegerField()
