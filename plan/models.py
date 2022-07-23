@@ -23,17 +23,15 @@ class Plan(models.Model):
         return self.name
 
 
-
-class Sunbscribe(models.Model):
+class Subscribe(models.Model):
     user       = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     plan       = models.ForeignKey(Plan, on_delete=models.CASCADE)
     is_active  = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     finish_at  = models.DateTimeField(null=True, blank=True)
     def __str__(self):
-        return (self.user.username + ' ' + self.plan.name)
+        return (self.user.username + '--> Plan ' + self.plan.name)
     
     class Meta:
         unique_together = ('user', 'plan')
         ordering = ['created_at']
-        

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Plan
+from .models import Plan, Subscribe
 
 @admin.register(Plan)
 class PlanAdmin(admin.ModelAdmin):
@@ -13,3 +13,20 @@ class PlanAdmin(admin.ModelAdmin):
         (("price"), {"fields": ("price",)}),
         (("Plan Details"), {"fields": ("description", "slug", "is_active",)}),
     )
+
+
+@admin.register(Subscribe)
+class SubscribeAdmin(admin.ModelAdmin):
+    list_display = ( 'user', 'plan', 'is_active', 'created_at', 'finish_at')
+    list_filter = ('is_active', 'plan__plan_type',)
+    search_fields = ('user',)
+    autocomplete_fields = ('user', 'plan',)
+    fieldsets = (
+        (("User "), {"fields": ("user",)}),
+        (("Plan "), {"fields": ("plan",)}),
+        (("status"), {"fields": ("is_active",)}),
+        (("Plan Details"), {"fields": ( "created_at", "finish_at",)}),
+    )
+    readonly_fields = ('created_at', 'finish_at')
+    def get_queryset(self, request):
+        return super().get_queryset(request).select_related('user', 'plan')
