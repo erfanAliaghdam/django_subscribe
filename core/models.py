@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
 from SmsService.tasks import send_email
 from django.utils import timezone
+from SmsService.tasks import send_email
 
 class UserManager(BaseUserManager):
     def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
@@ -43,15 +44,18 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
     objects = UserManager()
+    __original_is_active = None
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__original_is_active = self.is_active
+
+    def save(self, *args, **kwargs):
+        if self.is_active == True and self.__original_is_active == False:
+            print('XXXXXXXXXX')
+            from SmsService.tasks import send_email
+            send_email.delay(self.email, "trial email")
+        super().save(*args, **kwargs)
+        self.__original_is_active = self.is_active
+
     def __str__(self):
         return self.email 
-
-    # def save(self, *args, **kwargs):
-    #     if not self.pk:
-    #         try : 
-    #             obj = super(User, self).save(*args, **kwargs)
-    #             send_email.delay(self.email, 'Welcome to our site')
-    #         except Exception as e:
-    #             print(e)
-    #         return obj
-    #     super(User, self).save(*args, **kwargs)
