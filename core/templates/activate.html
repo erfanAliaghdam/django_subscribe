@@ -1,9 +1,0 @@
-{% extends './base.html' %}
-
-{% block content %}
-    <form action="{% url 'user-activation' %}" method="POST">
-        <input type="hidden" name="uid" value="{{ uid }}">
-        <input type="hidden" name="token" value="{{ token }}">
-        <input class="btn btn-primary rounded-3" type="submit" value="Activate account">
-    </form>
-{% endblock %}

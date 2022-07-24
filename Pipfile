@@ -15,6 +15,7 @@ django-getenv = "*"
 python-decouple = "*"
 celery = "*"
 redis = "*"
+drf-nested-routers = "*"
 
 [dev-packages]
 
