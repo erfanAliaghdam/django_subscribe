@@ -1,0 +1,7 @@
+{% extends './base.html' %}
+
+{% block content %}
+  {% load static %}
+  {{request.get_host }}
+  <a href="http://127.0.0.1:8000{% url 'plan-free' %}" target="_blank">hey click me</a>
+{% endblock %}

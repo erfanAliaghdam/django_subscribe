@@ -1,7 +1,7 @@
 from django.urls import path, include
-
-
+from .api.v1.urls import urlpatterns as urlpt
 
 urlpatterns = [
-    path('', include('plan.api.v1.urls'), name='plans'),
 ]
+
+urlpatterns += urlpt

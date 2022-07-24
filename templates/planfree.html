@@ -1,0 +1,15 @@
+{% extends './base.html' %}
+
+{% block content %}
+  {% load static %}
+  <div class="container pb-4" align="center">
+    <div class="card border-0" style="width: 36rem;">
+        <img src="{% static '30-trial.svg' %}" class="card-img-top" >
+        <div class="card-body">
+          <h2 class="card-title" style="color:#ff6576 !important; ">We have a gift for you.</h2>
+          <p class="card-text"  style="color:#3b925c !important; ">Click and get your free trial.</p>
+            <a href="{% url 'plans-list' %}" class="btn btn-lg rounded-3 mt-3" style="background-color: #ff6576 !important; color: #f2f7ff;">30 day free trial</a>
+        </div>
+      </div>
+</div>
+{% endblock %}
