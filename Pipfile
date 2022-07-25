@@ -19,6 +19,8 @@ drf-nested-routers = "*"
 django-debug-toolbar = "*"
 install = "*"
 django-admin-interface = "*"
+pytest-django = "*"
+model-bakery = "*"
 
 [dev-packages]
 

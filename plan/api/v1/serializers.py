@@ -3,6 +3,10 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
 class PlanSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(read_only=True)
+    price = serializers.DecimalField(read_only = True, max_digits=10, decimal_places=2)
+    is_active = serializers.BooleanField(read_only=True)
+    description = serializers.CharField(read_only=True)
     class Meta:
         model  = Plan
         fields = ('id', 'name', 'price', 'description', 'is_active')

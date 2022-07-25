@@ -9,7 +9,7 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewS
     queryset = Plan.objects.all().filter(is_active = True)
     serializer_class = PlanSerializer
 
-    @action(detail=True, methods=['get'], permission_classes=[permissions.IsAuthenticated])
+    @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
     def subscribe(self, request, pk):
         plan = self.get_object()
         if plan.is_active == True:
