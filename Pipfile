@@ -16,6 +16,9 @@ python-decouple = "*"
 celery = "*"
 redis = "*"
 drf-nested-routers = "*"
+django-debug-toolbar = "*"
+install = "*"
+django-admin-interface = "*"
 
 [dev-packages]
 

@@ -14,6 +14,7 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewS
         plan = self.get_object()
         if plan.is_active == True:
             user = request.user
+            #! JUST FOR PLANS WITH 0 PRICE -> free trial :)
             if plan.price == 0:
                 try:
                     sub, created = Subscribe.objects.get_or_create(plan=plan, user=user)
@@ -23,7 +24,7 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewS
                     return Response({'error': str(e)}, status=status.HTTP_406_NOT_ACCEPTABLE)
                 return Response({'status': 'ok'}, status=status.HTTP_201_CREATED)
             else: 
-                #! this section is for non free plans which will redirect to ....
+                # TODO this section is for non free plans which will redirect to ....
                 return Response({'error': 'This plan is not free, endpoint will be created later'})
         else: raise exceptions.ValidationError({'error': 'this plan is not active'})
 

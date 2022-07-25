@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, UserManager as BaseUserManager
-from SmsService.tasks import send_email
 from django.utils import timezone
-from SmsService.tasks import send_email
 
 
 class UserManager(BaseUserManager):
@@ -37,7 +35,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-
     username = None
     email = models.EmailField(('email address'), unique=True)
     first_name = models.CharField(max_length=50)
@@ -45,17 +42,19 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
     objects = UserManager()
+    #! for keeping last is_active status
     __original_is_active = None
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.__original_is_active = self.is_active
 
     def save(self, *args, **kwargs):
+        #* with this condition we can send email just for new user
         if self.is_active == True and self.__original_is_active == False:
-            print('XXXXXXXXXX')
             from SmsService.tasks import send_email
             send_email.delay(self.email, "trial email")
         super().save(*args, **kwargs)
+        #* updates is_active status
         self.__original_is_active = self.is_active
 
     def __str__(self):
