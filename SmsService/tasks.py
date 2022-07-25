@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.template.loader import render_to_string
 
 
-
 @shared_task
 def send_email(email, message):
     print('Sending emails... :')

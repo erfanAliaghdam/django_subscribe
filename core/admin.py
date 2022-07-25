@@ -8,6 +8,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('email', 'is_staff', 'is_active', 'is_superuser')
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
+    list_per_page = 20
     add_fieldsets = (
     (None, {
         'classes': ('wide',),

@@ -1,4 +1,3 @@
-from logging import raiseExceptions
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 from rest_framework import status, mixins, permissions, exceptions
 from rest_framework.decorators import action
@@ -24,6 +23,7 @@ class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewS
                     return Response({'error': str(e)}, status=status.HTTP_406_NOT_ACCEPTABLE)
                 return Response({'status': 'ok'}, status=status.HTTP_201_CREATED)
             else: 
+                #! this section is for non free plans which will redirect to ....
                 return Response({'error': 'This plan is not free, endpoint will be created later'})
         else: raise exceptions.ValidationError({'error': 'this plan is not active'})
 

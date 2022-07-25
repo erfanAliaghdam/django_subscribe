@@ -4,6 +4,7 @@ from SmsService.tasks import send_email
 from django.utils import timezone
 from SmsService.tasks import send_email
 
+
 class UserManager(BaseUserManager):
     def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
         if not email:
