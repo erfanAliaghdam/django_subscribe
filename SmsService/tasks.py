@@ -22,3 +22,4 @@ def send_email(email, message):
     message.send(fail_silently=False)
     print('Emails were successfully sent. ')
     print('-------------------------')
+    return True
