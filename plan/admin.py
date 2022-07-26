@@ -1,16 +1,15 @@
 from django.contrib import admin
-from .models import Plan, Subscribe
+from .models import PlanItem, Subscribe
 
-@admin.register(Plan)
+@admin.register(PlanItem)
 class PlanAdmin(admin.ModelAdmin):
-    list_display = ( 'name', 'description', 'price', 'plan_type', 'is_active')
-    list_filter = ('plan_type',)
-    search_fields = ('user', 'description', 'price', 'plan_type', 'name',)
+    list_display = ( 'name', 'description', 'price', 'is_active')
+    search_fields = ('user', 'description', 'price', 'name',)
     list_per_page = 20
 
     fieldsets = (
         (("title for Plan"), {"fields": ("name",)}),
-        (("Plan Type"), {"fields": ("plan_type",)}),
+        (("Plan duration"), {"fields": ("duration",)}),
         (("price"), {"fields": ("price",)}),
         (("Plan Details"), {"fields": ("description", "slug", "is_active",)}),
     )
@@ -18,7 +17,7 @@ class PlanAdmin(admin.ModelAdmin):
 @admin.register(Subscribe)
 class SubscribeAdmin(admin.ModelAdmin):
     list_display = ( 'user', 'plan', 'is_active', 'created_at', 'finish_at')
-    list_filter = ('is_active', 'plan__plan_type',)
+    list_filter = ('is_active',)
     search_fields = ('user',)
     list_per_page = 20
     autocomplete_fields = ('user', 'plan',)

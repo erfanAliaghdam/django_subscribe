@@ -1,4 +1,4 @@
-from plan.models import Plan, Subscribe
+from plan.models import PlanItem, Subscribe
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
@@ -8,7 +8,7 @@ class PlanSerializer(serializers.ModelSerializer):
     is_active = serializers.BooleanField(read_only=True)
     description = serializers.CharField(read_only=True)
     class Meta:
-        model  = Plan
+        model  = PlanItem
         fields = ('id', 'name', 'price', 'description', 'is_active')
 
 

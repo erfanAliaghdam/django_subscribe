@@ -3,10 +3,10 @@ from rest_framework import status, mixins, permissions, exceptions
 from rest_framework.decorators import action
 from .serializers import PlanSerializer, SubscribeSerializer
 from rest_framework.response import Response
-from plan.models import Plan, Subscribe
+from plan.models import PlanItem, Subscribe
 
 class PlanViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet):
-    queryset = Plan.objects.all().filter(is_active = True)
+    queryset = PlanItem.objects.all().filter(is_active = True)
     serializer_class = PlanSerializer
 
     @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])

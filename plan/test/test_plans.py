@@ -2,7 +2,7 @@ from pytest import mark, fixture
 from rest_framework.test import APIClient
 from rest_framework import status
 from model_bakery import baker
-from plan.models import Plan
+from plan.models import PlanItem
 from django.contrib.auth import get_user_model
 
 
@@ -12,7 +12,7 @@ class TestPlan:
         self.client = APIClient()
         self.user = baker.make(get_user_model(), is_active=True)
         self.client.force_authenticate(user = self.user )
-        self.plan = baker.make(Plan, is_active = True, price=0)
+        self.plan = baker.make(PlanItem, is_active = True, price=0, duration=30)
 
         
     @mark.django_db   
