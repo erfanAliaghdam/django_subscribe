@@ -21,6 +21,8 @@ install = "*"
 django-admin-interface = "*"
 pytest-django = "*"
 model-bakery = "*"
+pyyaml = "*"
+django-rest-swagger = "*"
 
 [dev-packages]
 
