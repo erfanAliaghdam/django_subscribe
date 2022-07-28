@@ -9,7 +9,7 @@ class PlanItem(models.Model):
     description = models.TextField(max_length=500)
     price    = models.IntegerField()
     duration = models.IntegerField()
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=500, unique=True)
     is_active = models.BooleanField(default=True)
 
