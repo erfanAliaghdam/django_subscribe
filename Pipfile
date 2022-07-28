@@ -23,6 +23,7 @@ pytest-django = "*"
 model-bakery = "*"
 pyyaml = "*"
 django-rest-swagger = "*"
+drf-yasg = "*"
 
 [dev-packages]
 
